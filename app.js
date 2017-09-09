@@ -22,17 +22,11 @@ const app = express();
 
 app.get('/', (req, res) => {
 	res.status(200).sendFile(__dirname + '/templates/url.html');
-  // res.status(200).send('autoapply').end();
 });
 
-app.get('/search'), (req, res) => {
-	res.status(200).sendFile(__dirname + '/templates/url.html');
-	//(templates/url.html).end()
-}
-
-app.get('/info'), (req, res) => {
+app.get('/info', (req, res) => {
 	res.status(200).sendFile(__dirname + '/templates/info.html');
-}
+});
 
 app.use(express.static(__dirname + '/public'));
 
