@@ -19,6 +19,7 @@
 const express = require('express');
 
 const app = express();
+var router = express.Router();
 
 app.get('/', (req, res) => {
 	res.status(200).sendFile(__dirname + '/templates/url.html');
@@ -29,6 +30,19 @@ app.get('/info', (req, res) => {
 });
 
 app.use(express.static(__dirname + '/public'));
+
+// ================ step 1 =================
+
+var bodyParser = require('body-parser'); 
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
+
+app.post('/team_name_url/', (req, res) => {
+	console.log(req.body.url_field)
+	res.sendFile(__dirname + '/templates/info.html'); 
+}); 
 
 // Start the server
 const PORT = process.env.PORT || 8080;
